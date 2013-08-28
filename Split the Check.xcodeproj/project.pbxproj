@@ -16,8 +16,6 @@
 		AC3BB83B17CE75910091E023 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB83A17CE75910091E023 /* AppDelegate.m */; };
 		AC3BB83E17CE75910091E023 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC3BB83C17CE75910091E023 /* Main.storyboard */; };
 		AC3BB84117CE75910091E023 /* Split_the_Check.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */; };
-		AC3BB84417CE75910091E023 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB84317CE75910091E023 /* MasterViewController.m */; };
-		AC3BB84717CE75910091E023 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB84617CE75910091E023 /* DetailViewController.m */; };
 		AC3BB84917CE75910091E023 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC3BB84817CE75910091E023 /* Images.xcassets */; };
 		AC3BB85017CE75910091E023 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB84F17CE75910091E023 /* XCTest.framework */; };
 		AC3BB85117CE75910091E023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82817CE75910091E023 /* Foundation.framework */; };
@@ -25,6 +23,8 @@
 		AC3BB85317CE75910091E023 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82E17CE75910091E023 /* CoreData.framework */; };
 		AC3BB85B17CE75910091E023 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC3BB85917CE75910091E023 /* InfoPlist.strings */; };
 		AC3BB85D17CE75910091E023 /* Split_the_CheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */; };
+		AC3BB86817CE77700091E023 /* ChecksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB86717CE77700091E023 /* ChecksListViewController.m */; };
+		AC3BB86B17CE783D0091E023 /* CheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB86A17CE783D0091E023 /* CheckViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,16 +51,16 @@
 		AC3BB83A17CE75910091E023 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AC3BB83D17CE75910091E023 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC3BB84017CE75910091E023 /* Split_the_Check.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Split_the_Check.xcdatamodel; sourceTree = "<group>"; };
-		AC3BB84217CE75910091E023 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		AC3BB84317CE75910091E023 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		AC3BB84517CE75910091E023 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		AC3BB84617CE75910091E023 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		AC3BB84817CE75910091E023 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AC3BB84E17CE75910091E023 /* Split the CheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Split the CheckTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3BB84F17CE75910091E023 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AC3BB85817CE75910091E023 /* Split the CheckTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Split the CheckTests-Info.plist"; sourceTree = "<group>"; };
 		AC3BB85A17CE75910091E023 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Split_the_CheckTests.m; sourceTree = "<group>"; };
+		AC3BB86617CE77700091E023 /* ChecksListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChecksListViewController.h; sourceTree = "<group>"; };
+		AC3BB86717CE77700091E023 /* ChecksListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecksListViewController.m; sourceTree = "<group>"; };
+		AC3BB86917CE783D0091E023 /* CheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckViewController.h; sourceTree = "<group>"; };
+		AC3BB86A17CE783D0091E023 /* CheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,10 +126,10 @@
 				AC3BB83917CE75910091E023 /* AppDelegate.h */,
 				AC3BB83A17CE75910091E023 /* AppDelegate.m */,
 				AC3BB83C17CE75910091E023 /* Main.storyboard */,
-				AC3BB84217CE75910091E023 /* MasterViewController.h */,
-				AC3BB84317CE75910091E023 /* MasterViewController.m */,
-				AC3BB84517CE75910091E023 /* DetailViewController.h */,
-				AC3BB84617CE75910091E023 /* DetailViewController.m */,
+				AC3BB86617CE77700091E023 /* ChecksListViewController.h */,
+				AC3BB86717CE77700091E023 /* ChecksListViewController.m */,
+				AC3BB86917CE783D0091E023 /* CheckViewController.h */,
+				AC3BB86A17CE783D0091E023 /* CheckViewController.m */,
 				AC3BB84817CE75910091E023 /* Images.xcassets */,
 				AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */,
 				AC3BB83117CE75910091E023 /* Supporting Files */,
@@ -263,10 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC3BB84717CE75910091E023 /* DetailViewController.m in Sources */,
-				AC3BB84417CE75910091E023 /* MasterViewController.m in Sources */,
+				AC3BB86817CE77700091E023 /* ChecksListViewController.m in Sources */,
 				AC3BB84117CE75910091E023 /* Split_the_Check.xcdatamodeld in Sources */,
 				AC3BB83B17CE75910091E023 /* AppDelegate.m in Sources */,
+				AC3BB86B17CE783D0091E023 /* CheckViewController.m in Sources */,
 				AC3BB83717CE75910091E023 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,6 +470,7 @@
 				AC3BB86217CE75910091E023 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AC3BB86317CE75910091E023 /* Build configuration list for PBXNativeTarget "Split the CheckTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +479,7 @@
 				AC3BB86517CE75910091E023 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

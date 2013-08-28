@@ -1,18 +1,18 @@
 //
-//  DetailViewController.m
+//  CheckViewController.m
 //  Split the Check
 //
 //  Created by Gautham Badhrinathan on 8/28/13.
 //  Copyright (c) 2013 Gautham Badhrinathan. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "CheckViewController.h"
 
-@interface DetailViewController ()
+@interface CheckViewController ()
 - (void)configureView;
 @end
 
-@implementation DetailViewController
+@implementation CheckViewController
 
 #pragma mark - Managing the detail item
 
@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }
 

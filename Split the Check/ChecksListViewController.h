@@ -1,5 +1,5 @@
 //
-//  MasterViewController.h
+//  ChecksListViewController.h
 //  Split the Check
 //
 //  Created by Gautham Badhrinathan on 8/28/13.
@@ -10,7 +10,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface ChecksListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

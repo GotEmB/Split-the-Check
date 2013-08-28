@@ -1,5 +1,5 @@
 //
-//  DetailViewController.h
+//  CheckViewController.h
 //  Split the Check
 //
 //  Created by Gautham Badhrinathan on 8/28/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+@interface CheckViewController : UIViewController
 
 @property (strong, nonatomic) id detailItem;
 
