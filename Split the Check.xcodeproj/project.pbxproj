@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AC3BB82917CE75910091E023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82817CE75910091E023 /* Foundation.framework */; };
+		AC3BB82B17CE75910091E023 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82A17CE75910091E023 /* CoreGraphics.framework */; };
+		AC3BB82D17CE75910091E023 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82C17CE75910091E023 /* UIKit.framework */; };
+		AC3BB82F17CE75910091E023 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82E17CE75910091E023 /* CoreData.framework */; };
+		AC3BB83517CE75910091E023 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC3BB83317CE75910091E023 /* InfoPlist.strings */; };
+		AC3BB83717CE75910091E023 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB83617CE75910091E023 /* main.m */; };
+		AC3BB83B17CE75910091E023 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB83A17CE75910091E023 /* AppDelegate.m */; };
+		AC3BB83E17CE75910091E023 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC3BB83C17CE75910091E023 /* Main.storyboard */; };
+		AC3BB84117CE75910091E023 /* Split_the_Check.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */; };
+		AC3BB84417CE75910091E023 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB84317CE75910091E023 /* MasterViewController.m */; };
+		AC3BB84717CE75910091E023 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB84617CE75910091E023 /* DetailViewController.m */; };
+		AC3BB84917CE75910091E023 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC3BB84817CE75910091E023 /* Images.xcassets */; };
+		AC3BB85017CE75910091E023 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB84F17CE75910091E023 /* XCTest.framework */; };
+		AC3BB85117CE75910091E023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82817CE75910091E023 /* Foundation.framework */; };
+		AC3BB85217CE75910091E023 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82C17CE75910091E023 /* UIKit.framework */; };
+		AC3BB85317CE75910091E023 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82E17CE75910091E023 /* CoreData.framework */; };
+		AC3BB85B17CE75910091E023 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC3BB85917CE75910091E023 /* InfoPlist.strings */; };
+		AC3BB85D17CE75910091E023 /* Split_the_CheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AC3BB85417CE75910091E023 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC3BB81D17CE75910091E023 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC3BB82417CE75910091E023;
+			remoteInfo = "Split the Check";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AC3BB82517CE75910091E023 /* Split the Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Split the Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC3BB82817CE75910091E023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AC3BB82A17CE75910091E023 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AC3BB82C17CE75910091E023 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AC3BB82E17CE75910091E023 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AC3BB83217CE75910091E023 /* Split the Check-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Split the Check-Info.plist"; sourceTree = "<group>"; };
+		AC3BB83417CE75910091E023 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AC3BB83617CE75910091E023 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AC3BB83817CE75910091E023 /* Split the Check-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Split the Check-Prefix.pch"; sourceTree = "<group>"; };
+		AC3BB83917CE75910091E023 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AC3BB83A17CE75910091E023 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AC3BB83D17CE75910091E023 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AC3BB84017CE75910091E023 /* Split_the_Check.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Split_the_Check.xcdatamodel; sourceTree = "<group>"; };
+		AC3BB84217CE75910091E023 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		AC3BB84317CE75910091E023 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		AC3BB84517CE75910091E023 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		AC3BB84617CE75910091E023 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		AC3BB84817CE75910091E023 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AC3BB84E17CE75910091E023 /* Split the CheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Split the CheckTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC3BB84F17CE75910091E023 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AC3BB85817CE75910091E023 /* Split the CheckTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Split the CheckTests-Info.plist"; sourceTree = "<group>"; };
+		AC3BB85A17CE75910091E023 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Split_the_CheckTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AC3BB82217CE75910091E023 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3BB82B17CE75910091E023 /* CoreGraphics.framework in Frameworks */,
+				AC3BB82F17CE75910091E023 /* CoreData.framework in Frameworks */,
+				AC3BB82D17CE75910091E023 /* UIKit.framework in Frameworks */,
+				AC3BB82917CE75910091E023 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC3BB84B17CE75910091E023 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3BB85017CE75910091E023 /* XCTest.framework in Frameworks */,
+				AC3BB85317CE75910091E023 /* CoreData.framework in Frameworks */,
+				AC3BB85217CE75910091E023 /* UIKit.framework in Frameworks */,
+				AC3BB85117CE75910091E023 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AC3BB81C17CE75910091E023 = {
+			isa = PBXGroup;
+			children = (
+				AC3BB83017CE75910091E023 /* Split the Check */,
+				AC3BB85617CE75910091E023 /* Split the CheckTests */,
+				AC3BB82717CE75910091E023 /* Frameworks */,
+				AC3BB82617CE75910091E023 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AC3BB82617CE75910091E023 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC3BB82517CE75910091E023 /* Split the Check.app */,
+				AC3BB84E17CE75910091E023 /* Split the CheckTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AC3BB82717CE75910091E023 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC3BB82817CE75910091E023 /* Foundation.framework */,
+				AC3BB82A17CE75910091E023 /* CoreGraphics.framework */,
+				AC3BB82C17CE75910091E023 /* UIKit.framework */,
+				AC3BB82E17CE75910091E023 /* CoreData.framework */,
+				AC3BB84F17CE75910091E023 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC3BB83017CE75910091E023 /* Split the Check */ = {
+			isa = PBXGroup;
+			children = (
+				AC3BB83917CE75910091E023 /* AppDelegate.h */,
+				AC3BB83A17CE75910091E023 /* AppDelegate.m */,
+				AC3BB83C17CE75910091E023 /* Main.storyboard */,
+				AC3BB84217CE75910091E023 /* MasterViewController.h */,
+				AC3BB84317CE75910091E023 /* MasterViewController.m */,
+				AC3BB84517CE75910091E023 /* DetailViewController.h */,
+				AC3BB84617CE75910091E023 /* DetailViewController.m */,
+				AC3BB84817CE75910091E023 /* Images.xcassets */,
+				AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */,
+				AC3BB83117CE75910091E023 /* Supporting Files */,
+			);
+			path = "Split the Check";
+			sourceTree = "<group>";
+		};
+		AC3BB83117CE75910091E023 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC3BB83217CE75910091E023 /* Split the Check-Info.plist */,
+				AC3BB83317CE75910091E023 /* InfoPlist.strings */,
+				AC3BB83617CE75910091E023 /* main.m */,
+				AC3BB83817CE75910091E023 /* Split the Check-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC3BB85617CE75910091E023 /* Split the CheckTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */,
+				AC3BB85717CE75910091E023 /* Supporting Files */,
+			);
+			path = "Split the CheckTests";
+			sourceTree = "<group>";
+		};
+		AC3BB85717CE75910091E023 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC3BB85817CE75910091E023 /* Split the CheckTests-Info.plist */,
+				AC3BB85917CE75910091E023 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AC3BB82417CE75910091E023 /* Split the Check */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC3BB86017CE75910091E023 /* Build configuration list for PBXNativeTarget "Split the Check" */;
+			buildPhases = (
+				AC3BB82117CE75910091E023 /* Sources */,
+				AC3BB82217CE75910091E023 /* Frameworks */,
+				AC3BB82317CE75910091E023 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Split the Check";
+			productName = "Split the Check";
+			productReference = AC3BB82517CE75910091E023 /* Split the Check.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AC3BB84D17CE75910091E023 /* Split the CheckTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC3BB86317CE75910091E023 /* Build configuration list for PBXNativeTarget "Split the CheckTests" */;
+			buildPhases = (
+				AC3BB84A17CE75910091E023 /* Sources */,
+				AC3BB84B17CE75910091E023 /* Frameworks */,
+				AC3BB84C17CE75910091E023 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC3BB85517CE75910091E023 /* PBXTargetDependency */,
+			);
+			name = "Split the CheckTests";
+			productName = "Split the CheckTests";
+			productReference = AC3BB84E17CE75910091E023 /* Split the CheckTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC3BB81D17CE75910091E023 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Gautham Badhrinathan";
+				TargetAttributes = {
+					AC3BB84D17CE75910091E023 = {
+						TestTargetID = AC3BB82417CE75910091E023;
+					};
+				};
+			};
+			buildConfigurationList = AC3BB82017CE75910091E023 /* Build configuration list for PBXProject "Split the Check" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AC3BB81C17CE75910091E023;
+			productRefGroup = AC3BB82617CE75910091E023 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC3BB82417CE75910091E023 /* Split the Check */,
+				AC3BB84D17CE75910091E023 /* Split the CheckTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC3BB82317CE75910091E023 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3BB84917CE75910091E023 /* Images.xcassets in Resources */,
+				AC3BB83517CE75910091E023 /* InfoPlist.strings in Resources */,
+				AC3BB83E17CE75910091E023 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC3BB84C17CE75910091E023 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3BB85B17CE75910091E023 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC3BB82117CE75910091E023 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3BB84717CE75910091E023 /* DetailViewController.m in Sources */,
+				AC3BB84417CE75910091E023 /* MasterViewController.m in Sources */,
+				AC3BB84117CE75910091E023 /* Split_the_Check.xcdatamodeld in Sources */,
+				AC3BB83B17CE75910091E023 /* AppDelegate.m in Sources */,
+				AC3BB83717CE75910091E023 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC3BB84A17CE75910091E023 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3BB85D17CE75910091E023 /* Split_the_CheckTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AC3BB85517CE75910091E023 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AC3BB82417CE75910091E023 /* Split the Check */;
+			targetProxy = AC3BB85417CE75910091E023 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AC3BB83317CE75910091E023 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC3BB83417CE75910091E023 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AC3BB83C17CE75910091E023 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC3BB83D17CE75910091E023 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AC3BB85917CE75910091E023 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC3BB85A17CE75910091E023 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AC3BB85E17CE75910091E023 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AC3BB85F17CE75910091E023 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AC3BB86117CE75910091E023 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Split the Check/Split the Check-Prefix.pch";
+				INFOPLIST_FILE = "Split the Check/Split the Check-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AC3BB86217CE75910091E023 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Split the Check/Split the Check-Prefix.pch";
+				INFOPLIST_FILE = "Split the Check/Split the Check-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		AC3BB86417CE75910091E023 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Split the Check.app/Split the Check";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Split the Check/Split the Check-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Split the CheckTests/Split the CheckTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		AC3BB86517CE75910091E023 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Split the Check.app/Split the Check";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Split the Check/Split the Check-Prefix.pch";
+				INFOPLIST_FILE = "Split the CheckTests/Split the CheckTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AC3BB82017CE75910091E023 /* Build configuration list for PBXProject "Split the Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC3BB85E17CE75910091E023 /* Debug */,
+				AC3BB85F17CE75910091E023 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC3BB86017CE75910091E023 /* Build configuration list for PBXNativeTarget "Split the Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC3BB86117CE75910091E023 /* Debug */,
+				AC3BB86217CE75910091E023 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AC3BB86317CE75910091E023 /* Build configuration list for PBXNativeTarget "Split the CheckTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC3BB86417CE75910091E023 /* Debug */,
+				AC3BB86517CE75910091E023 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AC3BB84017CE75910091E023 /* Split_the_Check.xcdatamodel */,
+			);
+			currentVersion = AC3BB84017CE75910091E023 /* Split_the_Check.xcdatamodel */;
+			path = Split_the_Check.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AC3BB81D17CE75910091E023 /* Project object */;
+}
