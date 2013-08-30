@@ -26,6 +26,11 @@
 		AC3BB85D17CE75910091E023 /* Split_the_CheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */; };
 		AC3BB86817CE77700091E023 /* ChecksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB86717CE77700091E023 /* ChecksListViewController.m */; };
 		AC3BB87117CE93E40091E023 /* NewCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB87017CE93E40091E023 /* NewCheckViewController.m */; };
+		ACEF2D0317D151B300ADE1CA /* SubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0217D151B300ADE1CA /* SubItem.m */; };
+		ACEF2D0617D151B300ADE1CA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0517D151B300ADE1CA /* Person.m */; };
+		ACEF2D0917D151B300ADE1CA /* Owe.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0817D151B300ADE1CA /* Owe.m */; };
+		ACEF2D0C17D151B300ADE1CA /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0B17D151B300ADE1CA /* Item.m */; };
+		ACEF2D0F17D151B300ADE1CA /* Check.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0E17D151B300ADE1CA /* Check.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +69,16 @@
 		AC3BB86717CE77700091E023 /* ChecksListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecksListViewController.m; sourceTree = "<group>"; };
 		AC3BB86F17CE93E40091E023 /* NewCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCheckViewController.h; sourceTree = "<group>"; };
 		AC3BB87017CE93E40091E023 /* NewCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCheckViewController.m; sourceTree = "<group>"; };
+		ACEF2D0117D151B300ADE1CA /* SubItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubItem.h; path = Entities/SubItem.h; sourceTree = "<group>"; };
+		ACEF2D0217D151B300ADE1CA /* SubItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubItem.m; path = Entities/SubItem.m; sourceTree = "<group>"; };
+		ACEF2D0417D151B300ADE1CA /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Entities/Person.h; sourceTree = "<group>"; };
+		ACEF2D0517D151B300ADE1CA /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = Entities/Person.m; sourceTree = "<group>"; };
+		ACEF2D0717D151B300ADE1CA /* Owe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Owe.h; path = Entities/Owe.h; sourceTree = "<group>"; };
+		ACEF2D0817D151B300ADE1CA /* Owe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Owe.m; path = Entities/Owe.m; sourceTree = "<group>"; };
+		ACEF2D0A17D151B300ADE1CA /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = Entities/Item.h; sourceTree = "<group>"; };
+		ACEF2D0B17D151B300ADE1CA /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = Entities/Item.m; sourceTree = "<group>"; };
+		ACEF2D0D17D151B300ADE1CA /* Check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Check.h; path = Entities/Check.h; sourceTree = "<group>"; };
+		ACEF2D0E17D151B300ADE1CA /* Check.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Check.m; path = Entities/Check.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +152,7 @@
 				AC16D76F17D0E20400BB18AD /* CheckViewController.m */,
 				AC3BB84817CE75910091E023 /* Images.xcassets */,
 				AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */,
+				ACEF2D1117D1526D00ADE1CA /* Entities */,
 				AC3BB83117CE75910091E023 /* Supporting Files */,
 			);
 			path = "Split the Check";
@@ -169,6 +185,23 @@
 				AC3BB85917CE75910091E023 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACEF2D1117D1526D00ADE1CA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				ACEF2D0D17D151B300ADE1CA /* Check.h */,
+				ACEF2D0E17D151B300ADE1CA /* Check.m */,
+				ACEF2D0A17D151B300ADE1CA /* Item.h */,
+				ACEF2D0B17D151B300ADE1CA /* Item.m */,
+				ACEF2D0717D151B300ADE1CA /* Owe.h */,
+				ACEF2D0817D151B300ADE1CA /* Owe.m */,
+				ACEF2D0417D151B300ADE1CA /* Person.h */,
+				ACEF2D0517D151B300ADE1CA /* Person.m */,
+				ACEF2D0117D151B300ADE1CA /* SubItem.h */,
+				ACEF2D0217D151B300ADE1CA /* SubItem.m */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,12 +301,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACEF2D0C17D151B300ADE1CA /* Item.m in Sources */,
 				AC3BB87117CE93E40091E023 /* NewCheckViewController.m in Sources */,
 				AC16D77017D0E20400BB18AD /* CheckViewController.m in Sources */,
+				ACEF2D0F17D151B300ADE1CA /* Check.m in Sources */,
+				ACEF2D0617D151B300ADE1CA /* Person.m in Sources */,
 				AC3BB86817CE77700091E023 /* ChecksListViewController.m in Sources */,
 				AC3BB84117CE75910091E023 /* Split_the_Check.xcdatamodeld in Sources */,
 				AC3BB83B17CE75910091E023 /* AppDelegate.m in Sources */,
+				ACEF2D0917D151B300ADE1CA /* Owe.m in Sources */,
 				AC3BB83717CE75910091E023 /* main.m in Sources */,
+				ACEF2D0317D151B300ADE1CA /* SubItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

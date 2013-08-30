@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3394" systemVersion="13A558" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Check" syncable="YES">
+    <entity name="Check" representedClassName="Check" syncable="YES">
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="check" inverseEntity="Item" syncable="YES"/>
         <relationship name="persons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="check" inverseEntity="Person" syncable="YES"/>
     </entity>
-    <entity name="Item" syncable="YES">
+    <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="check" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Check" inverseName="items" inverseEntity="Check" syncable="YES"/>
         <relationship name="owes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Owe" inverseName="item" inverseEntity="Owe" syncable="YES"/>
         <relationship name="subItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubItem" inverseName="item" inverseEntity="SubItem" syncable="YES"/>
     </entity>
-    <entity name="Owe" syncable="YES">
+    <entity name="Owe" representedClassName="Owe" syncable="YES">
         <attribute name="fraction" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="owes" inverseEntity="Item" syncable="YES"/>
         <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="owes" inverseEntity="Person" syncable="YES"/>
     </entity>
-    <entity name="Person" syncable="YES">
+    <entity name="Person" representedClassName="Person" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="check" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Check" inverseName="persons" inverseEntity="Check" syncable="YES"/>
         <relationship name="owes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Owe" inverseName="person" inverseEntity="Owe" syncable="YES"/>
     </entity>
-    <entity name="SubItem" syncable="YES">
+    <entity name="SubItem" representedClassName="SubItem" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="subItems" inverseEntity="Item" syncable="YES"/>
