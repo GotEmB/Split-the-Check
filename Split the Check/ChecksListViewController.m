@@ -8,8 +8,8 @@
 
 #import "ChecksListViewController.h"
 
-#import "CheckViewController.h"
 #import "NewCheckViewController.h"
+#import "CheckViewController.h"
 
 @interface ChecksListViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -71,7 +71,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    [cell.textLabel setText:[[self.fetchedResultsController objectAtIndexPath:indexPath] valueForKey:@"title"]];
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -105,19 +105,23 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
-    }
     if ([segue.identifier isEqualToString:@"NewCheck"]) {
-        id newCheckViewController = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
+        NewCheckViewController *newCheckViewController = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
         [newCheckViewController setFetchedResultsController:self.fetchedResultsController];
         [newCheckViewController setDismissViewControllerCallback:^(NSManagedObject *newCheck){
             [self dismissViewControllerAnimated:true completion:^{
-                
+                if (newCheck) {
+                    NSIndexPath *ii = [self.fetchedResultsController indexPathForObject:newCheck];
+                    [self.tableView selectRowAtIndexPath:ii animated:true scrollPosition:UITableViewScrollPositionNone];
+                    [self performSegueWithIdentifier:@"OpenCheck" sender:self];
+                }
             }];
         }];
+    }
+    else if ([segue.identifier isEqualToString:@"OpenCheck"]) {
+        CheckViewController *checkViewController = [segue destinationViewController];
+        [checkViewController setFetchedResultsController:self.fetchedResultsController];
+        [checkViewController setCheck:[self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow]];
     }
 }
 
@@ -223,7 +227,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    cell.textLabel.text = [[object valueForKey:@"title"] description];
 }
 
 @end

@@ -8,8 +8,6 @@
 
 #import "NewCheckViewController.h"
 
-NSArray *cellIdentifiers;
-
 @implementation NewCheckViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -25,9 +23,8 @@ NSArray *cellIdentifiers;
 {
     [super viewDidLoad];
     [self setShowDatePicker:false];
-    [self setCheckTimeStamp:[NSDate dateWithTimeIntervalSinceNow:60*60*24]];
+    [self setCheckTimeStamp:[NSDate date]];
     [self setTimeStampPicker:[[UIDatePicker alloc] init]];
-    cellIdentifiers = [NSArray arrayWithObjects:@"Title Cell", @"TimeStamp Cell", nil];
     [self.timeStampPicker addTarget:self action:@selector(setTitleAndTimeStampFromControls) forControlEvents:UIControlEventValueChanged];
     [self.timeStampPicker setDate:self.checkTimeStamp];
 }
@@ -67,15 +64,16 @@ NSArray *cellIdentifiers;
     UITableViewCell *cell;
     switch ([indexPath indexAtPosition:1]) {
         case 0:
-            cell = [tableView dequeueReusableCellWithIdentifier:[cellIdentifiers objectAtIndex:[indexPath indexAtPosition:1]] forIndexPath:indexPath];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Title Cell" forIndexPath:indexPath];
             assert([[cell.contentView.subviews objectAtIndex:0] isKindOfClass:[UITextField class]]);
             [self setTitleTextField:[cell.contentView.subviews objectAtIndex:0]];
             [self.titleTextField addTarget:self action:@selector(titleFieldEditingDidBegin) forControlEvents:UIControlEventEditingDidBegin];
             [self.titleTextField addTarget:self action:@selector(setTitleAndTimeStampFromControls) forControlEvents:UIControlEventEditingChanged];
+            [self.titleTextField setText:self.checkTitle];
             [self.titleTextField becomeFirstResponder];
             break;
         case 1:
-            cell = [tableView dequeueReusableCellWithIdentifier:[cellIdentifiers objectAtIndex:[indexPath indexAtPosition:1]] forIndexPath:indexPath];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"TimeStamp Cell" forIndexPath:indexPath];
             assert([[cell.contentView.subviews objectAtIndex:1] isKindOfClass:[UILabel class]]);
             [self setTimeStampLabel:[cell.contentView.subviews objectAtIndex:1]];
             [self.timeStampLabel setText:[dateFormatter stringFromDate:self.checkTimeStamp]];

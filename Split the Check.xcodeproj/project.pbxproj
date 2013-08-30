@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC16D77017D0E20400BB18AD /* CheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC16D76F17D0E20400BB18AD /* CheckViewController.m */; };
 		AC3BB82917CE75910091E023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82817CE75910091E023 /* Foundation.framework */; };
 		AC3BB82B17CE75910091E023 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82A17CE75910091E023 /* CoreGraphics.framework */; };
 		AC3BB82D17CE75910091E023 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3BB82C17CE75910091E023 /* UIKit.framework */; };
@@ -24,7 +25,6 @@
 		AC3BB85B17CE75910091E023 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC3BB85917CE75910091E023 /* InfoPlist.strings */; };
 		AC3BB85D17CE75910091E023 /* Split_the_CheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */; };
 		AC3BB86817CE77700091E023 /* ChecksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB86717CE77700091E023 /* ChecksListViewController.m */; };
-		AC3BB86B17CE783D0091E023 /* CheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB86A17CE783D0091E023 /* CheckViewController.m */; };
 		AC3BB87117CE93E40091E023 /* NewCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB87017CE93E40091E023 /* NewCheckViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC16D76E17D0E20400BB18AD /* CheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckViewController.h; sourceTree = "<group>"; };
+		AC16D76F17D0E20400BB18AD /* CheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckViewController.m; sourceTree = "<group>"; };
 		AC3BB82517CE75910091E023 /* Split the Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Split the Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3BB82817CE75910091E023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AC3BB82A17CE75910091E023 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,8 +62,6 @@
 		AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Split_the_CheckTests.m; sourceTree = "<group>"; };
 		AC3BB86617CE77700091E023 /* ChecksListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChecksListViewController.h; sourceTree = "<group>"; };
 		AC3BB86717CE77700091E023 /* ChecksListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecksListViewController.m; sourceTree = "<group>"; };
-		AC3BB86917CE783D0091E023 /* CheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckViewController.h; sourceTree = "<group>"; };
-		AC3BB86A17CE783D0091E023 /* CheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckViewController.m; sourceTree = "<group>"; };
 		AC3BB86F17CE93E40091E023 /* NewCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCheckViewController.h; sourceTree = "<group>"; };
 		AC3BB87017CE93E40091E023 /* NewCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCheckViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,10 +131,10 @@
 				AC3BB83C17CE75910091E023 /* Main.storyboard */,
 				AC3BB86617CE77700091E023 /* ChecksListViewController.h */,
 				AC3BB86717CE77700091E023 /* ChecksListViewController.m */,
-				AC3BB86917CE783D0091E023 /* CheckViewController.h */,
-				AC3BB86A17CE783D0091E023 /* CheckViewController.m */,
 				AC3BB86F17CE93E40091E023 /* NewCheckViewController.h */,
 				AC3BB87017CE93E40091E023 /* NewCheckViewController.m */,
+				AC16D76E17D0E20400BB18AD /* CheckViewController.h */,
+				AC16D76F17D0E20400BB18AD /* CheckViewController.m */,
 				AC3BB84817CE75910091E023 /* Images.xcassets */,
 				AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */,
 				AC3BB83117CE75910091E023 /* Supporting Files */,
@@ -269,10 +269,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC3BB87117CE93E40091E023 /* NewCheckViewController.m in Sources */,
+				AC16D77017D0E20400BB18AD /* CheckViewController.m in Sources */,
 				AC3BB86817CE77700091E023 /* ChecksListViewController.m in Sources */,
 				AC3BB84117CE75910091E023 /* Split_the_Check.xcdatamodeld in Sources */,
 				AC3BB83B17CE75910091E023 /* AppDelegate.m in Sources */,
-				AC3BB86B17CE783D0091E023 /* CheckViewController.m in Sources */,
 				AC3BB83717CE75910091E023 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

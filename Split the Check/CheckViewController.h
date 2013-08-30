@@ -2,15 +2,24 @@
 //  CheckViewController.h
 //  Split the Check
 //
-//  Created by Gautham Badhrinathan on 8/28/13.
+//  Created by Gautham Badhrinathan on 8/30/13.
 //  Copyright (c) 2013 Gautham Badhrinathan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface CheckViewController : UIViewController
+@interface CheckViewController : UITableViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) id detailItem;
+@property bool showDatePicker;
+@property NSManagedObject *check;
+@property NSString *checkTitle;
+@property NSDate *checkTimeStamp;
+@property (weak) NSFetchedResultsController *fetchedResultsController;
+@property (weak) UITextField *titleTextField;
+@property (weak) UILabel *timeStampLabel;
+@property UIDatePicker *timeStampPicker;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+- (void)setTitleAndTimeStampFromControls;
+- (void)saveContext;
+
 @end
