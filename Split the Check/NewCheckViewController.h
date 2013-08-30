@@ -10,8 +10,18 @@
 
 @interface NewCheckViewController : UITableViewController
 
-@property NSInteger showDatePicker;
+@property bool showDatePicker;
+@property NSString *checkTitle;
+@property NSDate *checkTimeStamp;
+@property (weak) NSFetchedResultsController *fetchedResultsController;
+@property (weak) UITextField *titleTextField;
+@property (weak) UILabel *timeStampLabel;
+@property UIDatePicker *timeStampPicker;
+@property (copy) void (^dismissViewControllerCallback)(NSManagedObject *);
 
 - (IBAction)cancelNewCheck:(id)sender;
+- (IBAction)commitNewCheck:(id)sender;
+- (void)titleFieldEditingDidBegin;
+- (void)setTitleAndTimeStampFromControls;
 
 @end

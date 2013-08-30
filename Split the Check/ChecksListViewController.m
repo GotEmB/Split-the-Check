@@ -9,6 +9,7 @@
 #import "ChecksListViewController.h"
 
 #import "CheckViewController.h"
+#import "NewCheckViewController.h"
 
 @interface ChecksListViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -70,7 +71,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+    [cell.textLabel setText:[[self.fetchedResultsController objectAtIndexPath:indexPath] valueForKey:@"title"]];
     return cell;
 }
 
@@ -109,6 +110,15 @@
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
     }
+    if ([segue.identifier isEqualToString:@"NewCheck"]) {
+        id newCheckViewController = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
+        [newCheckViewController setFetchedResultsController:self.fetchedResultsController];
+        [newCheckViewController setDismissViewControllerCallback:^(NSManagedObject *newCheck){
+            [self dismissViewControllerAnimated:true completion:^{
+                
+            }];
+        }];
+    }
 }
 
 #pragma mark - Fetched results controller
@@ -121,7 +131,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Check" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
