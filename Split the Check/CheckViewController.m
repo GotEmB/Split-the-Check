@@ -69,8 +69,9 @@
 {
     if (section == 0)
         return self.showDatePicker ? 3 : 2;
-    else if (section == 1)
-        return self.check.items.count + (self.editing ? 0 : 1);
+    else if (section == 1) {
+        return [[self.fetchedResultsController sections][0] numberOfObjects] + (self.editing ? 0 : 1);
+    }
     else
         @throw @"Invalid Code Path";
 }
@@ -102,14 +103,14 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         switch ([indexPath indexAtPosition:1]) {
             case 0:
-                cell = [tableView dequeueReusableCellWithIdentifier:@"Title Cell" forIndexPath:indexPath];
+                cell = [self.tableView dequeueReusableCellWithIdentifier:@"Title Cell" forIndexPath:indexPath];
                 assert([cell.contentView.subviews[0] isKindOfClass:[UITextField class]]);
                 [self setTitleTextField:cell.contentView.subviews[0]];
                 [self.titleTextField addTarget:self action:@selector(setTitleAndTimeStampFromControls) forControlEvents:UIControlEventEditingChanged];
                 [self.titleTextField setText:self.checkTitle];
                 break;
             case 1:
-                cell = [tableView dequeueReusableCellWithIdentifier:@"TimeStamp Cell" forIndexPath:indexPath];
+                cell = [self.tableView dequeueReusableCellWithIdentifier:@"TimeStamp Cell" forIndexPath:indexPath];
                 assert([cell.contentView.subviews[1] isKindOfClass:[UILabel class]]);
                 [self setTimeStampLabel:cell.contentView.subviews[1]];
                 [self.timeStampLabel setText:[dateFormatter stringFromDate:self.checkTimeStamp]];
@@ -122,21 +123,20 @@
             default:
                 break;
         }
-        return cell;
     }
     else if ([indexPath indexAtPosition:0] == 1) {
         if ([indexPath indexAtPosition:1] < self.check.items.count) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"Item Cell" forIndexPath:indexPath];
-            Item *item = [self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]][[indexPath indexAtPosition:1]];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"Item Cell" forIndexPath:indexPath];
+            Item *item = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:[indexPath indexAtPosition:1] inSection:0]];
             [cell.textLabel setText:item.name];
             [cell.detailTextLabel setText:[item.amount description]];
-            return cell;
         }
         else
-            return [tableView dequeueReusableCellWithIdentifier:@"Add Cell" forIndexPath:indexPath];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"Add Cell" forIndexPath:indexPath];
     }
     else
         @throw @"Invalid Code Path";
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -165,9 +165,7 @@
         if ([indexPath indexAtPosition:1] == self.check.items.count) {
             Item *item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:self.context];
             [self.check addItemsObject:item];
-            [self.tableView beginUpdates];
-            [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[[self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]] indexOfObject:item] inSection:1]] withRowAnimation:UITableViewRowAnimationMiddle];
-            [self.tableView endUpdates];
+            [self saveContext];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[[self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]] indexOfObject:item] inSection:1] animated:true scrollPosition:UITableViewScrollPositionNone];
             [self performSegueWithIdentifier:@"OpenItem" sender:self];
         }
@@ -200,19 +198,20 @@
         [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        Item *item = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:[indexPath indexAtPosition:1] inSection:0]];
+        [self.check removeItemsObject:item];
+        [self.context deleteObject:item];
+        [self saveContext];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -230,6 +229,92 @@
 }
 */
 
+#pragma mark - Fetched results controller
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.context]];
+    [fetchRequest setFetchBatchSize:20];
+    [fetchRequest setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"check == %@", self.check]];
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:@"Items"];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _fetchedResultsController;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    UITableView *tableView = self.tableView;
+    indexPath = [NSIndexPath indexPathForRow:[indexPath indexAtPosition:1] inSection:1];
+    newIndexPath = [NSIndexPath indexPathForRow:[newIndexPath indexAtPosition:1] inSection:1];
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeUpdate: {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            Item *item = [self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]][[indexPath indexAtPosition:1]];
+            [cell.textLabel setText:item.name];
+            [cell.detailTextLabel setText:[item.amount description]];
+            break;
+        }
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -238,9 +323,6 @@
         ItemViewController *itemViewController = [segue destinationViewController];
         [itemViewController setContext:self.context];
         [itemViewController setItem:[self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]][[self.tableView.indexPathForSelectedRow indexAtPosition:1]]];
-        [itemViewController setDeleteItemInCheckViewController:^{
-            [self.tableView deleteRowsAtIndexPaths:@[self.tableView.indexPathForSelectedRow] withRowAnimation:UITableViewRowAnimationMiddle];
-        }];
     }
 }
 

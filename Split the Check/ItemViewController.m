@@ -18,6 +18,7 @@
 @property (weak) UITextField *itemAmountTextField;
 
 - (void) itemDidChange;
+- (void) saveContext;
 
 @end
 
@@ -102,11 +103,22 @@
             [self setItemAmountTextField:cell.contentView.subviews[1]];
             [self.itemAmountTextField setText:[self.item.amount description]];
             [self.itemAmountTextField setDelegate:self];
+            [self.itemAmountTextField addTarget:self action:@selector(itemDidChange) forControlEvents:UIControlEventEditingChanged];
             return cell;
         }
     }
     else
         @throw @"Invalid Code Path";
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath indexAtPosition:0] == 1) {
+        if ([indexPath indexAtPosition:1] == 0)
+            [self.itemNameTextField becomeFirstResponder];
+        else if ([indexPath indexAtPosition:1] == 1)
+            [self.itemAmountTextField becomeFirstResponder];
+    }
 }
 
 /*
@@ -134,7 +146,7 @@
 
 /*
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (void)tableVew:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
 }
 */
@@ -160,24 +172,38 @@
 
  */
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.itemAmountTextField && self.isGroup)
+        return false;
+    else
+        return true;
+}
+
 - (void)itemDidChange
 {
     [self.item setName:self.itemNameTextField.text];
+    [self.item setAmount:[NSDecimalNumber decimalNumberWithString:self.itemAmountTextField.text]];
     [self setIsGroup:(self.isGroupControl.selectedSegmentIndex == 1)];
+    if (self.isGroup) [self.itemAmountTextField resignFirstResponder];
+    [self saveContext];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    if (!self.item.name) {
-        [self.item.check removeItemsObject:self.item];
-        self.deleteItemInCheckViewController();
-        [self.item.managedObjectContext deleteObject:self.item];
-    }
-    
+- (void)saveContext
+{
     NSError *error;
     if (![self.context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if (!self.item.name) {
+        [self.item.check removeItemsObject:self.item];
+        [self.item.managedObjectContext deleteObject:self.item];
+    }
+    [self saveContext];
 }
 
 @end

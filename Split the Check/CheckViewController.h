@@ -10,9 +10,10 @@
 
 @class Check;
 
-@interface CheckViewController : UITableViewController <UITextFieldDelegate>
+@interface CheckViewController : UITableViewController <UITextFieldDelegate, NSFetchedResultsControllerDelegate>
 
 @property Check *check;
 @property (weak) NSManagedObjectContext *context;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

@@ -14,6 +14,5 @@
 
 @property Item *item;
 @property (weak) NSManagedObjectContext *context;
-@property (copy) void(^deleteItemInCheckViewController)();
 
 @end
