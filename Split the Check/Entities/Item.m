@@ -2,21 +2,22 @@
 //  Item.m
 //  Split the Check
 //
-//  Created by Gautham Badhrinathan on 8/31/13.
+//  Created by Gautham Badhrinathan on 9/3/13.
 //  Copyright (c) 2013 Gautham Badhrinathan. All rights reserved.
 //
 
 #import "Item.h"
+#import "Check.h"
 #import "Owe.h"
 #import "SubItem.h"
 
 
 @implementation Item
 
-@dynamic name;
 @dynamic amount;
+@dynamic name;
 @dynamic check;
-@dynamic subItems;
 @dynamic owes;
+@dynamic subItems;
 
 @end

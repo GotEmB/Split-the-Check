@@ -7,6 +7,21 @@
 //
 
 #import "NewCheckViewController.h"
+#import "Check.h"
+
+@interface NewCheckViewController ()
+
+@property bool showDatePicker;
+@property NSString *checkTitle;
+@property NSDate *checkTimeStamp;
+@property (weak) UITextField *titleTextField;
+@property (weak) UILabel *timeStampLabel;
+@property UIDatePicker *timeStampPicker;
+
+- (void)titleFieldEditingDidBegin;
+- (void)setTitleAndTimeStampFromControls;
+
+@end
 
 @implementation NewCheckViewController
 
@@ -116,20 +131,21 @@
     }
 }
 
-- (IBAction)cancelNewCheck:(id)sender {
+- (IBAction)cancelNewCheck:(id)sender
+{
     self.dismissViewControllerCallback(NULL);
 }
 
-- (IBAction)commitNewCheck:(id)sender {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newCheck = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+- (IBAction)commitNewCheck:(id)sender
+{
+    Check *newCheck = [NSEntityDescription insertNewObjectForEntityForName:@"Check" inManagedObjectContext:self.context];
     
-    [newCheck setValue:self.checkTitle forKey:@"title"];
-    [newCheck setValue:self.checkTimeStamp forKey:@"timeStamp"];
+    if ([self.checkTitle isEqualToString:@""]) [self setCheckTitle:@"Untitled Check"];
+    [newCheck setTitle:self.checkTitle];
+    [newCheck setTimeStamp:self.checkTimeStamp];
     
     NSError *error = nil;
-    if (![context save:&error]) {
+    if (![self.context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
@@ -137,7 +153,8 @@
     self.dismissViewControllerCallback(newCheck);
 }
 
-- (void)titleFieldEditingDidBegin {
+- (void)titleFieldEditingDidBegin
+{
     if (self.showDatePicker) {
         [self setShowDatePicker:false];
         [self.tableView beginUpdates];
@@ -147,7 +164,8 @@
     }
 }
 
-- (void)setTitleAndTimeStampFromControls {
+- (void)setTitleAndTimeStampFromControls
+{
     if (self.titleTextField)
         [self setCheckTitle:self.titleTextField.text];
     if (self.timeStampPicker) {
@@ -161,7 +179,8 @@
     }
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     [self.titleTextField removeFromSuperview];
     [self.timeStampLabel removeFromSuperview];
     [self.timeStampPicker removeFromSuperview];

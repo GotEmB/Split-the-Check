@@ -7,8 +7,21 @@
 //
 
 #import "CheckViewController.h"
+#import "ItemViewController.h"
+#import "Check.h"
+#import "Item.h"
 
 @interface CheckViewController ()
+
+@property bool showDatePicker;
+@property NSString *checkTitle;
+@property NSDate *checkTimeStamp;
+@property (weak) UITextField *titleTextField;
+@property (weak) UILabel *timeStampLabel;
+@property UIDatePicker *timeStampPicker;
+
+- (void)setTitleAndTimeStampFromControls;
+- (void)saveContext;
 
 @end
 
@@ -27,9 +40,9 @@
 {
     [super viewDidLoad];
     [self setShowDatePicker:false];
-    [self setCheckTitle:[self.check valueForKey:@"title"]];
+    [self setCheckTitle:self.check.title];
     [self setTitle:self.checkTitle];
-    [self setCheckTimeStamp:[self.check valueForKey:@"timeStamp"]];
+    [self setCheckTimeStamp:self.check.timeStamp];
     [self setTimeStampPicker:[[UIDatePicker alloc] init]];
     [self.timeStampPicker addTarget:self action:@selector(setTitleAndTimeStampFromControls) forControlEvents:UIControlEventValueChanged];
     [self.timeStampPicker setDate:self.checkTimeStamp];
@@ -49,17 +62,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.showDatePicker ? 3 : 2;
+    if (section == 0)
+        return self.showDatePicker ? 3 : 2;
+    else if (section == 1)
+        return self.check.items.count + (self.editing ? 0 : 1);
+    else
+        @throw @"Invalid Code Path";
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return NULL;
+    else if (section == 1)
+        return @"Items & Groups";
+    else
+        @throw @"Invalid Code Path";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath indexAtPosition:1] == 2)
+    if ([indexPath indexAtPosition:0] == 0 && [indexPath indexAtPosition:1] == 2)
         return self.timeStampPicker.bounds.size.height;
     else
         return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL].bounds.size.height;
@@ -67,61 +95,65 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell;
     if ([indexPath indexAtPosition:0] == 0) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        
-        UITableViewCell *cell;
         switch ([indexPath indexAtPosition:1]) {
             case 0:
                 cell = [tableView dequeueReusableCellWithIdentifier:@"Title Cell" forIndexPath:indexPath];
-                assert([[cell.contentView.subviews objectAtIndex:0] isKindOfClass:[UITextField class]]);
-                [self setTitleTextField:[cell.contentView.subviews objectAtIndex:0]];
+                assert([cell.contentView.subviews[0] isKindOfClass:[UITextField class]]);
+                [self setTitleTextField:cell.contentView.subviews[0]];
                 [self.titleTextField addTarget:self action:@selector(setTitleAndTimeStampFromControls) forControlEvents:UIControlEventEditingChanged];
                 [self.titleTextField setText:self.checkTitle];
-                [self.titleTextField becomeFirstResponder];
                 break;
             case 1:
                 cell = [tableView dequeueReusableCellWithIdentifier:@"TimeStamp Cell" forIndexPath:indexPath];
-                assert([[cell.contentView.subviews objectAtIndex:1] isKindOfClass:[UILabel class]]);
-                [self setTimeStampLabel:[cell.contentView.subviews objectAtIndex:1]];
+                assert([cell.contentView.subviews[1] isKindOfClass:[UILabel class]]);
+                [self setTimeStampLabel:cell.contentView.subviews[1]];
                 [self.timeStampLabel setText:[dateFormatter stringFromDate:self.checkTimeStamp]];
                 break;
             case 2:
                 cell = [[UITableViewCell alloc] init];
                 [cell.contentView addSubview:self.timeStampPicker];
-                assert([[cell.contentView.subviews objectAtIndex:0] isKindOfClass:[UIDatePicker class]]);
+                assert([cell.contentView.subviews[0] isKindOfClass:[UIDatePicker class]]);
                 break;
             default:
                 break;
         }
         return cell;
     }
-    @throw @"Method Not Implemented";
+    else if ([indexPath indexAtPosition:0] == 1) {
+        if ([indexPath indexAtPosition:1] < self.check.items.count) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Item Cell" forIndexPath:indexPath];
+            Item *item = [self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]][[indexPath indexAtPosition:1]];
+            [cell.textLabel setText:item.name];
+            [cell.detailTextLabel setText:[item.amount description]];
+            return cell;
+        }
+        else
+            return [tableView dequeueReusableCellWithIdentifier:@"Add Cell" forIndexPath:indexPath];
+    }
+    else
+        @throw @"Invalid Code Path";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath indexAtPosition:0] == 0) {
-        if (!self.tableView.editing) return;
         switch ([indexPath indexAtPosition:1]) {
             case 0:
                 [self.titleTextField becomeFirstResponder];
                 break;
             case 1:
-                [self.titleTextField resignFirstResponder];
                 [self setShowDatePicker:!self.showDatePicker];
                 if (self.showDatePicker) {
-                    [tableView beginUpdates];
-                    [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
-                    [tableView endUpdates];
+                    [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
                     [self.timeStampLabel setTextColor:self.timeStampLabel.tintColor];
                 }
                 else {
-                    [tableView beginUpdates];
-                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
-                    [tableView endUpdates];
+                    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
                     [self.timeStampLabel setTextColor:[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NULL].detailTextLabel.textColor];
                 }
                 break;
@@ -129,32 +161,43 @@
                 break;
         }
     }
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    [super setEditing:editing animated:animated];
-    if (!editing) {
-        if ([self.titleTextField isFirstResponder]) [self.titleTextField resignFirstResponder];
-        if (self.showDatePicker) {
-            [self setShowDatePicker:false];
+    else if ([indexPath indexAtPosition:0] == 1) {
+        if ([indexPath indexAtPosition:1] == self.check.items.count) {
+            Item *item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:self.context];
+            [self.check addItemsObject:item];
             [self.tableView beginUpdates];
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+            [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[[self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]] indexOfObject:item] inSection:1]] withRowAnimation:UITableViewRowAnimationMiddle];
             [self.tableView endUpdates];
-            [self.timeStampLabel setTextColor:[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NULL].detailTextLabel.textColor];
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[[self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]] indexOfObject:item] inSection:1] animated:true scrollPosition:UITableViewScrollPositionNone];
+            [self performSegueWithIdentifier:@"OpenItem" sender:self];
         }
-        [self saveContext];
     }
-    else {
-        [self.titleTextField becomeFirstResponder];
+    if ([indexPath indexAtPosition:0] != 0 || [indexPath indexAtPosition:1] != 0)
+        [self.titleTextField resignFirstResponder];
+    if (([indexPath indexAtPosition:0] != 0 || [indexPath indexAtPosition:1] != 1) && self.showDatePicker) {
+        [self setShowDatePicker:false];
+        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+        [self.timeStampLabel setTextColor:[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NULL].detailTextLabel.textColor];
     }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath indexAtPosition:0] == 0) {
+    if ([indexPath indexAtPosition:0] == 0)
         return false;
-    }
-    return true;
+    else if ([indexPath indexAtPosition:0] == 1)
+        return [indexPath indexAtPosition:1] < self.check.items.count;
+    else
+        @throw @"Invalid Code Path";
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    if (self.editing)
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    else
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 /*
@@ -187,36 +230,31 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.titleTextField) {
-        return self.tableView.editing;
+    if ([segue.identifier isEqualToString:@"OpenItem"]) {
+        ItemViewController *itemViewController = [segue destinationViewController];
+        [itemViewController setContext:self.context];
+        [itemViewController setItem:[self.check.items sortedArrayUsingDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]][[self.tableView.indexPathForSelectedRow indexAtPosition:1]]];
+        [itemViewController setDeleteItemInCheckViewController:^{
+            [self.tableView deleteRowsAtIndexPaths:@[self.tableView.indexPathForSelectedRow] withRowAnimation:UITableViewRowAnimationMiddle];
+        }];
     }
-    return true;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
     if (textField == self.titleTextField && self.showDatePicker) {
         [self setShowDatePicker:false];
-        [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
-        [self.tableView endUpdates];
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
         [self.timeStampLabel setTextColor:[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NULL].detailTextLabel.textColor];
     }
 }
 
-- (void)setTitleAndTimeStampFromControls {
+- (void)setTitleAndTimeStampFromControls
+{
     if (self.titleTextField)
         [self setCheckTitle:self.titleTextField.text];
     if (self.timeStampPicker) {
@@ -230,27 +268,30 @@
     }
 }
 
-- (void)saveContext {
+- (void)saveContext
+{
     if (![self.checkTitle isEqualToString:@""]) {
-        [self.check setValue:self.checkTitle forKey:@"title"];
+        [self.check setTitle:self.checkTitle];
         [self setTitle:self.checkTitle];
     }
     else
-        [self setCheckTitle:[self.check valueForKey:@"title"]];
-    [self.check setValue:self.checkTimeStamp forKey:@"timeStamp"];
+        [self setCheckTitle:self.check.title];
+    [self.check setTimeStamp:self.checkTimeStamp];
     
     NSError *error;
-    if (![self.fetchedResultsController.managedObjectContext save:&error]) {
+    if (![self.context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated
+{
     [self saveContext];
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     [self.titleTextField removeFromSuperview];
     [self.timeStampLabel removeFromSuperview];
     [self.timeStampPicker removeFromSuperview];

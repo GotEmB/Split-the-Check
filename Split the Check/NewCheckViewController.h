@@ -8,20 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class Check;
+
 @interface NewCheckViewController : UITableViewController
 
-@property bool showDatePicker;
-@property NSString *checkTitle;
-@property NSDate *checkTimeStamp;
-@property (weak) NSFetchedResultsController *fetchedResultsController;
-@property (weak) UITextField *titleTextField;
-@property (weak) UILabel *timeStampLabel;
-@property UIDatePicker *timeStampPicker;
-@property (copy) void (^dismissViewControllerCallback)(NSManagedObject *);
+@property (weak) NSManagedObjectContext *context;
+@property (copy) void (^dismissViewControllerCallback)(Check *);
 
 - (IBAction)cancelNewCheck:(id)sender;
 - (IBAction)commitNewCheck:(id)sender;
-- (void)titleFieldEditingDidBegin;
-- (void)setTitleAndTimeStampFromControls;
 
 @end

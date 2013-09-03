@@ -31,6 +31,7 @@
 		ACEF2D0917D151B300ADE1CA /* Owe.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0817D151B300ADE1CA /* Owe.m */; };
 		ACEF2D0C17D151B300ADE1CA /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0B17D151B300ADE1CA /* Item.m */; };
 		ACEF2D0F17D151B300ADE1CA /* Check.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0E17D151B300ADE1CA /* Check.m */; };
+		ACF2368717D2933E00110E2E /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF2368617D2933E00110E2E /* ItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		ACEF2D0B17D151B300ADE1CA /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = Entities/Item.m; sourceTree = "<group>"; };
 		ACEF2D0D17D151B300ADE1CA /* Check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Check.h; path = Entities/Check.h; sourceTree = "<group>"; };
 		ACEF2D0E17D151B300ADE1CA /* Check.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Check.m; path = Entities/Check.m; sourceTree = "<group>"; };
+		ACF2368517D2933E00110E2E /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
+		ACF2368617D2933E00110E2E /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				AC3BB87017CE93E40091E023 /* NewCheckViewController.m */,
 				AC16D76E17D0E20400BB18AD /* CheckViewController.h */,
 				AC16D76F17D0E20400BB18AD /* CheckViewController.m */,
+				ACF2368517D2933E00110E2E /* ItemViewController.h */,
+				ACF2368617D2933E00110E2E /* ItemViewController.m */,
 				AC3BB84817CE75910091E023 /* Images.xcassets */,
 				AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */,
 				ACEF2D1117D1526D00ADE1CA /* Entities */,
@@ -302,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACEF2D0C17D151B300ADE1CA /* Item.m in Sources */,
+				ACF2368717D2933E00110E2E /* ItemViewController.m in Sources */,
 				AC3BB87117CE93E40091E023 /* NewCheckViewController.m in Sources */,
 				AC16D77017D0E20400BB18AD /* CheckViewController.m in Sources */,
 				ACEF2D0F17D151B300ADE1CA /* Check.m in Sources */,
