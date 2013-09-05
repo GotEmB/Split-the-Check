@@ -10,7 +10,7 @@
 
 @class Item;
 
-@interface ItemViewController : UITableViewController <UITextFieldDelegate>
+@interface ItemViewController : UITableViewController <UITextFieldDelegate, UIAlertViewDelegate>
 
 @property Item *item;
 @property (weak) NSManagedObjectContext *context;

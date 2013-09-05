@@ -9,6 +9,7 @@
 #import "ItemViewController.h"
 #import "Item.h"
 #import "Check.h"
+#import "SubItem.h"
 
 @interface ItemViewController ()
 
@@ -16,8 +17,9 @@
 @property (weak) UISegmentedControl *isGroupControl;
 @property (weak) UITextField *itemNameTextField;
 @property (weak) UITextField *itemAmountTextField;
+@property (copy) NSComparisonResult(^subitemsComparer)(SubItem *subItem1, SubItem *subItem2);
 
-- (void) itemDidChange;
+- (void) itemDidChange:(UIControl *)control;
 - (void) saveContext;
 
 @end
@@ -42,6 +44,16 @@
     else
         [self setTitle:self.item.name];
     [self setIsGroup:(self.item.subItems.count > 0)];
+    [self setSubitemsComparer:^NSComparisonResult(SubItem *subItem1, SubItem *subItem2){
+        if ((!subItem1.name || [subItem1.name isEqualToString:@""]) && (!subItem2.name || [subItem2.name isEqualToString:@""]))
+            return NSOrderedSame;
+        else if (!subItem1.name || [subItem1.name isEqualToString:@""])
+            return NSOrderedDescending;
+        else if (!subItem2.name || [subItem2.name isEqualToString:@""])
+            return NSOrderedAscending;
+        else
+            return [subItem1.name compare:subItem2.name];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +76,7 @@
     else if (section == 1)
         return 2;
     else if (section == 2 && self.isGroup)
-        return self.item.subItems.count; // + 1;
+        return self.item.subItems.count + 1;
     else
         @throw @"Invalid Code Path";
 }
@@ -86,7 +98,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"Group? Cell" forIndexPath:indexPath];
         [self setIsGroupControl:cell.contentView.subviews[0]];
         [self.isGroupControl setSelectedSegmentIndex:(self.isGroup ? 1 : 0)];
-        [self.isGroupControl addTarget:self action:@selector(itemDidChange) forControlEvents:UIControlEventValueChanged];
+        [self.isGroupControl addTarget:self action:@selector(itemDidChange:) forControlEvents:UIControlEventValueChanged];
         return cell;
     }
     else if ([indexPath indexAtPosition:0] == 1) {
@@ -95,7 +107,7 @@
             [self setItemNameTextField:cell.contentView.subviews[0]];
             [self.itemNameTextField setText:self.item.name];
             [self.itemNameTextField setDelegate:self];
-            [self.itemNameTextField addTarget:self action:@selector(itemDidChange) forControlEvents:UIControlEventEditingChanged];
+            [self.itemNameTextField addTarget:self action:@selector(itemDidChange:) forControlEvents:UIControlEventEditingChanged];
             return cell;
         }
         else {
@@ -103,7 +115,24 @@
             [self setItemAmountTextField:cell.contentView.subviews[1]];
             [self.itemAmountTextField setText:[self.item.amount description]];
             [self.itemAmountTextField setDelegate:self];
-            [self.itemAmountTextField addTarget:self action:@selector(itemDidChange) forControlEvents:UIControlEventEditingChanged];
+            [self.itemAmountTextField addTarget:self action:@selector(itemDidChange:) forControlEvents:UIControlEventEditingChanged];
+            return cell;
+        }
+    }
+    else if ([indexPath indexAtPosition:0] == 2 && self.isGroup) {
+        if ([indexPath indexAtPosition:1] < self.item.subItems.count) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SubItem Cell" forIndexPath:indexPath];
+            [cell.contentView.subviews[0] addTarget:self action:@selector(itemDidChange:) forControlEvents:UIControlEventEditingChanged];
+            [cell.contentView.subviews[1] addTarget:self action:@selector(itemDidChange:) forControlEvents:UIControlEventEditingChanged];
+            SubItem *subItem = [self.item.subItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"" ascending:true comparator:self.subitemsComparer]]][[indexPath indexAtPosition:1]];
+            [cell.contentView.subviews[0] setText:subItem.name];
+            [cell.contentView.subviews[0] setDelegate:self];
+            [cell.contentView.subviews[1] setText:[subItem.amount description]];
+            [cell.contentView.subviews[1] setDelegate:self];
+            return cell;
+        }
+        else {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"Add Cell" forIndexPath:indexPath];
             return cell;
         }
     }
@@ -118,6 +147,16 @@
             [self.itemNameTextField becomeFirstResponder];
         else if ([indexPath indexAtPosition:1] == 1)
             [self.itemAmountTextField becomeFirstResponder];
+    }
+    else if ([indexPath indexAtPosition:0] == 2 && self.isGroup) {
+        if ([indexPath indexAtPosition:1] == self.item.subItems.count) {
+            [self resignFirstResponder];
+            SubItem *subItem = [NSEntityDescription insertNewObjectForEntityForName:@"SubItem" inManagedObjectContext:self.context];
+            [self.item addSubItemsObject:subItem];
+            [self saveContext];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [[self.tableView cellForRowAtIndexPath:indexPath].contentView.subviews[0] becomeFirstResponder];
+        }
     }
 }
 
@@ -176,16 +215,106 @@
 {
     if (textField == self.itemAmountTextField && self.isGroup)
         return false;
+    else if (self.isGroup) {
+        UIView *superXView = textField;
+        while (superXView && ![superXView isKindOfClass:[UITableViewCell class]])
+            superXView = superXView.superview;
+        if (superXView && [[self.tableView indexPathForCell:(UITableViewCell *)superXView] indexAtPosition:0] == 2) {
+            UITableViewCell *cell = (UITableViewCell *)superXView;
+            if (cell.contentView.subviews[1] == textField)
+                return ![((UITextField *)cell.contentView.subviews[0]).text isEqualToString:@""];
+            else
+                return true;
+        }
+        else
+            return true;
+    }
     else
         return true;
 }
 
-- (void)itemDidChange
+- (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self.item setName:self.itemNameTextField.text];
-    [self.item setAmount:[NSDecimalNumber decimalNumberWithString:self.itemAmountTextField.text]];
-    [self setIsGroup:(self.isGroupControl.selectedSegmentIndex == 1)];
-    if (self.isGroup) [self.itemAmountTextField resignFirstResponder];
+    if (self.isGroup) {
+        UIView *superXView = textField;
+        while (superXView && ![superXView isKindOfClass:[UITableViewCell class]])
+            superXView = superXView.superview;
+        if (superXView && [[self.tableView indexPathForCell:(UITableViewCell *)superXView] indexAtPosition:0] == 2) {
+            UITableViewCell *cell = (UITableViewCell *)superXView;
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            SubItem *subItem = [self.item.subItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"" ascending:true comparator:self.subitemsComparer]]][[indexPath indexAtPosition:1]];
+            if (cell.contentView.subviews[0] == textField)
+                [subItem setName:textField.text];
+            else if (cell.contentView.subviews[1] == textField) {
+                [subItem setAmount:[NSDecimalNumber decimalNumberWithString:textField.text]];
+                if ([subItem.amount isEqualToNumber:[NSDecimalNumber notANumber]])
+                    [subItem setAmount:[NSDecimalNumber zero]];
+                [textField setText:[subItem.amount description]];
+                [self.item setAmount:[[self.item.subItems valueForKey:@"amount"] valueForKeyPath:@"@sum.floatValue"]];
+                [self.itemAmountTextField setText:[self.item.amount description]];
+            }
+            if (!subItem.name || [subItem.name isEqualToString:@""]) {
+                [self.item removeSubItemsObject:subItem];
+                [self.context deleteObject:subItem];
+                [self saveContext];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else {
+                [self saveContext];
+                NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[[self.item.subItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"" ascending:true comparator:self.subitemsComparer]]] indexOfObject:subItem] inSection:2];
+                if ([newIndexPath compare:indexPath] != NSOrderedSame)
+                    [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+            }
+        }
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"Delete SubItems"]) {
+        if ([alertView cancelButtonIndex] != buttonIndex) {
+            [self setIsGroup:false];
+            [self.isGroupControl setSelectedSegmentIndex:0];
+            for (SubItem *subItem in [NSSet setWithSet:self.item.subItems]) {
+                [self.item removeSubItemsObject:subItem];
+                [self.context deleteObject:subItem];
+            }
+            [self saveContext];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
+}
+
+- (void)itemDidChange:(UIControl *)control
+{
+    if (control == self.itemNameTextField)
+        [self.item setName:self.itemNameTextField.text];
+    else if (control == self.itemAmountTextField)
+        [self.item setAmount:[NSDecimalNumber decimalNumberWithString:self.itemAmountTextField.text]];
+    else if (control == self.isGroupControl) {
+        BOOL oldIsGroup = self.isGroup;
+        [self setIsGroup:(self.isGroupControl.selectedSegmentIndex == 1)];
+        if (oldIsGroup != self.isGroup) {
+            [self.tableView beginUpdates];
+            if (self.isGroup) {
+                [self.itemAmountTextField resignFirstResponder];
+                [self.tableView insertSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.item setAmount:[NSDecimalNumber zero]];
+                [self.itemAmountTextField setText:[self.item.amount description]];
+            }
+            else {
+                if (self.item.subItems.count > 0) {
+                    [self setIsGroup:true];
+                    [self.isGroupControl setSelectedSegmentIndex:1];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Delete SubItems" message:@"Switching to Total Amount will delete all existing SubItems. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                    [alertView show];
+                }
+                else
+                    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            [self.tableView endUpdates];
+        }
+    }
     [self saveContext];
 }
 
