@@ -191,12 +191,40 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-    [super setEditing:editing animated:animated];
-    if (self.editing)
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    else
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    if (self.editing != editing) {
+        [super setEditing:editing animated:animated];
+        if (self.editing)
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        else
+            [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
+
+/*
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.editButtonItem setTitle:@"Done"];
+    [self.editButtonItem setStyle:UIBarButtonItemStyleDone];
+    [self setTableViewInRowUpdate:true];
+    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    for (int i = 0; i < self.check.items.count; i++) {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]];
+        [cell.contentView.subviews[0] resignFirstResponder];
+        [cell.contentView.subviews[1] resignFirstResponder];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self setTableViewInRowUpdate:false];
+    if (!self.rowDeletedInTableViewRowUpdate)
+        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.check.items.count inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    else
+        [self setRowDeletedInTableViewRowUpdate:false];
+    [self.editButtonItem setTitle:@"Edit"];
+    [self.editButtonItem setStyle:UIBarButtonItemStyleBordered];
+}
+ */
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -210,7 +238,7 @@
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 
 /*
@@ -242,6 +270,7 @@
     [fetchRequest setFetchBatchSize:20];
     [fetchRequest setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:true]]];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"check == %@", self.check]];
+    [fetchRequest setReturnsObjectsAsFaults:false];
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:@"Items"];

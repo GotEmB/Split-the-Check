@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4504" systemVersion="13A569" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A584" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3734.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -27,6 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="uI3-nF-i26" style="IBUITableViewCellStyleDefault" id="yck-iO-PDW">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -99,6 +100,7 @@
                                         <constraint firstAttribute="centerY" secondItem="Qwb-rx-D2s" secondAttribute="centerY" id="lFz-9b-Dpy"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeStamp Cell" textLabel="HL6-ec-U2u" detailTextLabel="NcJ-iB-7IS" style="IBUITableViewCellStyleValue1" id="b3n-7v-ebm">
                                 <rect key="frame" x="0.0" y="163" width="320" height="44"/>
@@ -123,6 +125,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Add Cell" textLabel="EZN-bV-z9M" style="IBUITableViewCellStyleDefault" id="SSr-JC-bx2">
                                 <rect key="frame" x="0.0" y="207" width="320" height="44"/>
@@ -140,6 +143,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Item Cell" textLabel="fvy-bR-APO" detailTextLabel="Q7B-3L-Hjn" style="IBUITableViewCellStyleValue1" id="qK6-G2-8jL">
                                 <rect key="frame" x="0.0" y="251" width="320" height="44"/>
@@ -164,6 +168,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <segue destination="8Ih-62-709" kind="push" identifier="OpenItem" id="Y7Q-kq-v1k"/>
                                 </connections>
@@ -211,7 +216,7 @@
                                         <constraint firstItem="c3P-eG-5Ee" firstAttribute="leading" secondItem="J36-kE-LA1" secondAttribute="leading" constant="5" id="tkO-oR-NZc"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemName Cell" id="1ZZ-le-4AB">
                                 <rect key="frame" x="0.0" y="163" width="320" height="44"/>
@@ -236,6 +241,7 @@
                                         <constraint firstAttribute="trailing" secondItem="bt8-Rq-qDK" secondAttribute="trailing" constant="15" id="lah-e1-v7l"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemAmount Cell" id="H2p-AA-EQr">
                                 <rect key="frame" x="0.0" y="207" width="320" height="44"/>
@@ -270,6 +276,7 @@
                                         <constraint firstItem="aZG-5R-7aZ" firstAttribute="leading" secondItem="hFa-Tq-WYW" secondAttribute="leading" constant="15" id="r1L-Xf-lfa"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubItem Cell" id="np2-dL-YEv">
                                 <rect key="frame" x="0.0" y="251" width="320" height="44"/>
@@ -313,6 +320,7 @@
                                         <constraint firstItem="rfT-qa-WJm" firstAttribute="leading" secondItem="Qkb-ig-fXa" secondAttribute="trailing" constant="8" id="tz4-Rf-XvL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Add Cell" textLabel="loP-6g-M6t" style="IBUITableViewCellStyleDefault" id="0a4-cd-Q2O">
                                 <rect key="frame" x="0.0" y="295" width="320" height="44"/>
@@ -330,6 +338,75 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Split? Cell" id="HcC-hp-9Hc">
+                                <rect key="frame" x="0.0" y="339" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HcC-hp-9Hc" id="bev-dQ-XVg">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qsB-vL-WTf">
+                                            <rect key="frame" x="5" y="8" width="310" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Equal Parts"/>
+                                                <segment title="Proportions"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="qsB-vL-WTf" secondAttribute="centerY" id="3fj-sa-lfD"/>
+                                        <constraint firstAttribute="trailing" secondItem="qsB-vL-WTf" secondAttribute="trailing" constant="5" id="GDh-4V-jxU"/>
+                                        <constraint firstItem="qsB-vL-WTf" firstAttribute="leading" secondItem="bev-dQ-XVg" secondAttribute="leading" constant="5" id="RxU-Fc-n1O"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Owe Cell" id="d5U-6z-J1j">
+                                <rect key="frame" x="0.0" y="383" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d5U-6z-J1j" id="bLJ-C6-igS">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Person" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oEC-io-KZQ">
+                                            <rect key="frame" x="15" y="0.0" width="217" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="ekk-mW-8KK" id="kKC-6R-slb"/>
+                                            </connections>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Portion" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n8a-b2-xJT">
+                                            <rect key="frame" x="240" y="0.0" width="65" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="65" id="2fh-ah-sVD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="ekk-mW-8KK" id="L6W-ab-8aN"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="oEC-io-KZQ" secondAttribute="centerY" id="4xH-fz-TAD"/>
+                                        <constraint firstItem="n8a-b2-xJT" firstAttribute="leading" secondItem="oEC-io-KZQ" secondAttribute="trailing" constant="8" id="9OG-xK-P9T"/>
+                                        <constraint firstAttribute="trailing" secondItem="n8a-b2-xJT" secondAttribute="trailing" constant="15" id="Ees-sd-6wP"/>
+                                        <constraint firstItem="oEC-io-KZQ" firstAttribute="leading" secondItem="bLJ-C6-igS" secondAttribute="leading" constant="15" id="Kz7-hb-z83"/>
+                                        <constraint firstItem="oEC-io-KZQ" firstAttribute="top" secondItem="bLJ-C6-igS" secondAttribute="top" id="MaR-08-Z7U"/>
+                                        <constraint firstItem="n8a-b2-xJT" firstAttribute="leading" secondItem="oEC-io-KZQ" secondAttribute="trailing" constant="8" id="jwX-F6-pqY"/>
+                                        <constraint firstAttribute="bottom" secondItem="oEC-io-KZQ" secondAttribute="bottom" id="klH-ph-uT4"/>
+                                        <constraint firstItem="n8a-b2-xJT" firstAttribute="top" secondItem="bLJ-C6-igS" secondAttribute="top" id="odg-5j-cMn"/>
+                                        <constraint firstAttribute="bottom" secondItem="n8a-b2-xJT" secondAttribute="bottom" id="rHG-6b-gMd"/>
+                                        <constraint firstAttribute="centerY" secondItem="n8a-b2-xJT" secondAttribute="centerY" id="uQo-Q8-7dc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -373,6 +450,7 @@
                                         <constraint firstAttribute="trailing" secondItem="qb4-jm-xlD" secondAttribute="trailing" constant="15" id="kme-4N-8Dt"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeStamp Cell" textLabel="BCG-ft-ZhM" detailTextLabel="kUL-sv-4aN" style="IBUITableViewCellStyleValue1" id="C8a-PN-MYm">
                                 <rect key="frame" x="0.0" y="163" width="320" height="44"/>
@@ -397,6 +475,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

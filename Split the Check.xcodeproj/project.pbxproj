@@ -26,6 +26,7 @@
 		AC3BB85D17CE75910091E023 /* Split_the_CheckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB85C17CE75910091E023 /* Split_the_CheckTests.m */; };
 		AC3BB86817CE77700091E023 /* ChecksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB86717CE77700091E023 /* ChecksListViewController.m */; };
 		AC3BB87117CE93E40091E023 /* NewCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3BB87017CE93E40091E023 /* NewCheckViewController.m */; };
+		ACC2B8A017DE6D3300C8D65F /* UIView+RelatedData.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC2B89F17DE6D3300C8D65F /* UIView+RelatedData.m */; };
 		ACEF2D0317D151B300ADE1CA /* SubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0217D151B300ADE1CA /* SubItem.m */; };
 		ACEF2D0617D151B300ADE1CA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0517D151B300ADE1CA /* Person.m */; };
 		ACEF2D0917D151B300ADE1CA /* Owe.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEF2D0817D151B300ADE1CA /* Owe.m */; };
@@ -70,6 +71,8 @@
 		AC3BB86717CE77700091E023 /* ChecksListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecksListViewController.m; sourceTree = "<group>"; };
 		AC3BB86F17CE93E40091E023 /* NewCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCheckViewController.h; sourceTree = "<group>"; };
 		AC3BB87017CE93E40091E023 /* NewCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCheckViewController.m; sourceTree = "<group>"; };
+		ACC2B89C17DE645100C8D65F /* UIView+RelatedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RelatedData.h"; sourceTree = "<group>"; };
+		ACC2B89F17DE6D3300C8D65F /* UIView+RelatedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RelatedData.m"; sourceTree = "<group>"; };
 		ACEF2D0117D151B300ADE1CA /* SubItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubItem.h; path = Entities/SubItem.h; sourceTree = "<group>"; };
 		ACEF2D0217D151B300ADE1CA /* SubItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubItem.m; path = Entities/SubItem.m; sourceTree = "<group>"; };
 		ACEF2D0417D151B300ADE1CA /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Entities/Person.h; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				AC16D76F17D0E20400BB18AD /* CheckViewController.m */,
 				ACF2368517D2933E00110E2E /* ItemViewController.h */,
 				ACF2368617D2933E00110E2E /* ItemViewController.m */,
+				ACC2B89C17DE645100C8D65F /* UIView+RelatedData.h */,
+				ACC2B89F17DE6D3300C8D65F /* UIView+RelatedData.m */,
 				AC3BB84817CE75910091E023 /* Images.xcassets */,
 				AC3BB83F17CE75910091E023 /* Split_the_Check.xcdatamodeld */,
 				ACEF2D1117D1526D00ADE1CA /* Entities */,
@@ -317,6 +322,7 @@
 				AC3BB83B17CE75910091E023 /* AppDelegate.m in Sources */,
 				ACEF2D0917D151B300ADE1CA /* Owe.m in Sources */,
 				AC3BB83717CE75910091E023 /* main.m in Sources */,
+				ACC2B8A017DE6D3300C8D65F /* UIView+RelatedData.m in Sources */,
 				ACEF2D0317D151B300ADE1CA /* SubItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +406,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -430,6 +440,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
